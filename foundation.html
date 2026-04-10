@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clean Slate Houston Foundation | SAH Specialty Adaptive Housing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:        #1F5C57;
+    --teal-mid:    #2E7D77;
+    --teal-light:  #4A9E99;
+    --teal-pale:   #E6F4F3;
+    --gold:        #B8860B;
+    --gold-light:  #D4A520;
+    --gold-pale:   #FDF6E3;
+    --ink:         #0D1F1E;
+    --slate:       #2C4140;
+    --mist:        #F5FAF9;
+    --white:       #FFFFFF;
+    --warm-brown:  #5C3D1E;
+    --warm-tan:    #F9F0E3;
+    --border:      rgba(31,92,87,0.15);
+    --shadow:      0 4px 32px rgba(31,92,87,0.10);
+    --radius:      12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--mist);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--teal-mid);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .nav-brand span { color: var(--gold-light); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--ink) 0%, var(--slate) 60%, var(--teal) 100%);
+    color: var(--white);
+    padding: 90px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(74,158,153,0.18) 0%, transparent 60%);
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(184,134,11,0.2);
+    border: 1px solid rgba(212,165,32,0.4);
+    color: var(--gold-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.78);
+    max-width: 480px;
+    margin-bottom: 36px;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .stat-card .sc-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .stat-card .sc-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-top: 8px;
+  }
+  .status-pending { background: rgba(184,134,11,0.25); color: var(--gold-light); }
+  .status-active  { background: rgba(74,158,153,0.25); color: var(--teal-light); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 80px 40px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--slate);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+  }
+
+  /* ── MISSION BAND ── */
+  .mission-band {
+    background: var(--warm-brown);
+    color: var(--white);
+    padding: 56px 40px;
+  }
+  .mission-band-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .mission-band blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+    font-weight: 600;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--gold-pale);
+    margin-bottom: 20px;
+  }
+  .mission-band p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs-section { background: var(--white); }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .prog-card {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .prog-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+  }
+  .prog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .prog-icon {
+    width: 52px; height: 52px;
+    background: var(--teal-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+  .prog-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .prog-card p { font-size: 0.92rem; color: var(--slate); line-height: 1.7; }
+
+  /* ── STRUCTURE ── */
+  .structure-section { background: var(--teal-pale); }
+  .structure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .structure-entity {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--teal);
+  }
+  .structure-entity.foundation { border-top-color: var(--gold); }
+  .entity-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 8px;
+  }
+  .entity-tag.gold-tag { color: var(--gold); }
+  .structure-entity h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .structure-entity p { font-size: 0.92rem; color: var(--slate); line-height: 1.75; margin-bottom: 16px; }
+  .entity-list { list-style: none; }
+  .entity-list li {
+    font-size: 0.88rem;
+    color: var(--slate);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .entity-list li::before { content: '✓'; color: var(--teal-mid); font-weight: 700; font-size: 0.8rem; }
+  .entity-list.gold-list li::before { color: var(--gold); }
+  .connector-arrow {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 2rem;
+    color: var(--teal-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .connector-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal-mid);
+    letter-spacing: 1px;
+  }
+
+  /* ── 501c3 TRACKER ── */
+  .tracker-section { background: var(--white); }
+  .tracker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .tracker-steps { display: flex; flex-direction: column; gap: 0; }
+  .tracker-step {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .tracker-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .step-circle {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem;
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+  }
+  .step-circle.done { background: var(--teal); color: var(--white); }
+  .step-circle.pending { background: var(--gold-pale); color: var(--gold); border: 2px solid var(--gold-light); }
+  .step-body h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .step-body p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
+
+  .cost-card {
+    background: var(--warm-tan);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    border: 1px solid rgba(184,134,11,0.2);
+    height: fit-content;
+  }
+  .cost-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--warm-brown);
+    margin-bottom: 24px;
+  }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+    font-size: 0.9rem;
+  }
+  .cost-row .label { color: var(--slate); }
+  .cost-row .amount { font-weight: 600; color: var(--warm-brown); font-family: 'DM Mono', monospace; }
+  .cost-row .amount.free { color: var(--teal-mid); }
+  .cost-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 0;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .cost-total .total-label { color: var(--ink); }
+  .cost-total .total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--warm-brown);
+  }
+
+  /* ── DONATION FORM ── */
+  .donation-section { background: var(--teal); color: var(--white); }
+  .donation-section .section-label { color: rgba(255,255,255,0.6); }
+  .donation-section .section-title { color: var(--white); }
+  .donation-section .section-subtitle { color: rgba(255,255,255,0.75); }
+  .donation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .donation-why h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-pale);
+    margin-bottom: 20px;
+  }
+  .donation-why ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .donation-why li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.93rem; color: rgba(255,255,255,0.82); line-height: 1.6;
+  }
+  .donation-why li::before {
+    content: '★';
+    color: var(--gold-light);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .donation-form {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    backdrop-filter: blur(10px);
+  }
+  .donation-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .form-note {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 24px;
+  }
+  .amount-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .amount-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: var(--white);
+    padding: 12px 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .amount-btn:hover, .amount-btn.selected {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .form-field {
+    margin-bottom: 16px;
+  }
+  .form-field label {
+    display: block;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: var(--white);
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-field input::placeholder { color: rgba(255,255,255,0.4); }
+  .form-field input:focus, .form-field select:focus { border-color: var(--gold-light); }
+  .form-field select option { background: var(--teal); color: var(--white); }
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--gold-light); }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--ink); color: var(--white); padding: 70px 40px; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 16px; }
+  .contact-info p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 28px; }
+  .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .contact-detail-icon { width: 40px; height: 40px; background: rgba(74,158,153,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-detail-text { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+  .contact-form-wrap { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 36px 32px; }
+  .contact-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 24px; }
+  .cf-field { margin-bottom: 16px; }
+  .cf-field label { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .cf-field input, .cf-field textarea { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--white); padding: 11px 14px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; resize: vertical; }
+  .cf-field input::placeholder, .cf-field textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .cf-field input:focus, .cf-field textarea:focus { border-color: var(--teal-light); }
+  .cf-submit { width: 100%; background: var(--teal-mid); color: var(--white); border: none; border-radius: 6px; padding: 14px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .cf-submit:hover { background: var(--teal-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080F0F;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--teal-light); text-decoration: none; }
+
+  /* ── SUCCESS MSG ── */
+  .success-msg { display: none; background: rgba(74,158,153,0.2); border: 1px solid var(--teal-light); border-radius: 8px; padding: 16px; color: var(--teal-light); text-align: center; font-size: 0.9rem; margin-top: 12px; }
+
+  @media (max-width: 768px) {
+    .hero-inner, .structure-grid, .tracker-grid, .donation-grid, .contact-inner { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    nav .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">SAH <span>Specialty Adaptive Housing</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="foundation.html" class="active">Foundation</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        501(c)(3) Formation In Progress
+      </div>
+      <h1>Clean Slate Houston<br><em>Foundation</em></h1>
+      <p class="hero-sub">A nonprofit organization rooted in D&amp;D's 20+ years of service to the Houston veteran community — providing housing, employment pathways, and wraparound support for veterans and their families.</p>
+      <a href="#donate" class="hero-cta">Express Donation Interest ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="sc-value">20+</span>
+        <span class="sc-label">Years of Service</span>
+        <div class="status-pill status-active"><span class="dot"></span> Active</div>
+      </div>
+      <div class="stat-card">
+        <span class="sc-value">5</span>
+        <span class="sc-label">Program Pillars</span>
+        <div class="status-pill status-active"><span class="dot"></span> Active</div>
+      </div>
+      <div class="stat-card">
+        <span class="sc-value">501(c)(3)</span>
+        <span class="sc-label">Federal Status</span>
+        <div class="status-pill status-pending"><span class="dot"></span> In Progress</div>
+      </div>
+      <div class="stat-card">
+        <span class="sc-value">Houston</span>
+        <span class="sc-label">Service Area</span>
+        <div class="status-pill status-active"><span class="dot"></span> Texas-Wide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION BAND -->
+<div class="mission-band">
+  <div class="mission-band-inner">
+    <blockquote>"A Clean Slate for Every Veteran"</blockquote>
+    <p>The Clean Slate Houston Foundation exists to ensure that every veteran in the greater Houston area has access to stable housing, meaningful employment, and the support systems needed to rebuild and thrive — regardless of their past circumstances.</p>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="programs-section">
+  <div class="section-inner">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Five Pillars of Impact</h2>
+    <p class="section-subtitle">The Foundation's work spans five interconnected program areas — each rooted in D&amp;D's 20+ years of experience serving the Houston veteran community.</p>
+    <div class="programs-grid">
+      <div class="prog-card">
+        <div class="prog-icon">🏠</div>
+        <h3>Adaptive Housing Services</h3>
+        <p>Providing accessible, modified housing solutions for veterans with disabilities and physical limitations — connecting individuals to home modification programs, accessible rentals, and transitional housing resources throughout Houston.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">💼</div>
+        <h3>Employment & Workforce Development</h3>
+        <p>Job readiness training, apprenticeship program navigation, employer partnerships, and career coaching to help veterans achieve lasting economic self-sufficiency and dignified employment.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">🤝</div>
+        <h3>Homeless Veteran Outreach</h3>
+        <p>Street-level outreach, coordinated entry support, and case management for homeless and at-risk veterans — connecting individuals to shelter, healthcare, benefits, and permanent housing pathways.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">👨‍👩‍👧</div>
+        <h3>Veteran Family Support</h3>
+        <p>Wraparound services for veteran families — connecting spouses, children, and dependents to healthcare navigation, mental health resources, and community support throughout the greater Houston area.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">🌟</div>
+        <h3>Benefits Navigation & Advocacy</h3>
+        <p>Helping veterans access the VA benefits, disability claims, housing vouchers, and community resources they have earned — cutting through bureaucratic barriers with knowledgeable, veteran-centered advocacy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="structure-section">
+  <div class="section-inner">
+    <p class="section-label">Our Structure</p>
+    <h2 class="section-title">Two Connected Entities</h2>
+    <p class="section-subtitle">The Foundation operates as a legally separate 501(c)(3) nonprofit — connected to D&amp;D Maintenance's mission but structurally independent for donor trust, grant eligibility, and legal clarity.</p>
+    <div class="structure-grid">
+      <div class="structure-entity">
+        <p class="entity-tag">For-Profit Entity</p>
+        <h3>D&amp;D Maintenance, Inc.</h3>
+        <p>Licensed general contracting and veteran home remodeling company with 20+ years serving Houston veterans. Provides physical construction, adaptive modifications, and remodeling services.</p>
+        <ul class="entity-list">
+          <li>Licensed General Contractor — Texas</li>
+          <li>VA-compliant veteran home remodeling</li>
+          <li>Adaptive modifications &amp; accessibility upgrades</li>
+          <li>Subcontractor management &amp; project oversight</li>
+          <li>Revenue-generating operations</li>
+        </ul>
+      </div>
+      <div class="structure-entity foundation">
+        <p class="entity-tag gold-tag">501(c)(3) Nonprofit — Formation In Progress</p>
+        <h3>Clean Slate Houston Foundation</h3>
+        <p>Nonprofit arm focused on advocacy, direct services, grant-funded programming, and community partnerships — eligible for tax-deductible donations and foundation grants unavailable to for-profits.</p>
+        <ul class="entity-list gold-list">
+          <li>501(c)(3) federal tax exemption (in progress)</li>
+          <li>Tax-deductible donations accepted</li>
+          <li>Eligible for foundation &amp; government grants</li>
+          <li>Direct veteran services &amp; case management</li>
+          <li>Community education &amp; advocacy programs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 501c3 TRACKER -->
+<section class="tracker-section">
+  <div class="section-inner">
+    <p class="section-label">Formation Progress</p>
+    <h2 class="section-title">501(c)(3) Roadmap</h2>
+    <p class="section-subtitle">We are actively completing every step of the Texas 501(c)(3) formation process. Donors who express interest now will be notified when we are fully approved to receive tax-deductible contributions.</p>
+    <div class="tracker-grid">
+      <div class="tracker-steps">
+        <div class="tracker-step">
+          <div class="step-circle pending">1</div>
+          <div class="step-body">
+            <h4>Name Search — SOSDirect</h4>
+            <p>Confirm "Clean Slate Houston Foundation" availability with the Texas Secretary of State.</p>
+          </div>
+        </div>
+        <div class="tracker-step">
+          <div class="step-circle pending">2</div>
+          <div class="step-body">
+            <h4>Obtain EIN (IRS)</h4>
+            <p>Federal Employer Identification Number — free, issued immediately at irs.gov/ein.</p>
+          </div>
+        </div>
+        <div class="tracker-step">
+          <div class="step-circle pending">3</div>
+          <div class="step-body">
+            <h4>File Certificate of Formation (Form 202)</h4>
+            <p>File with the Texas Secretary of State. Fee: $25. Includes purpose clause and dissolution language.</p>
+          </div>
+        </div>
+        <div class="tracker-step">
+          <div class="step-circle pending">4</div>
+          <div class="step-body">
+            <h4>Adopt Bylaws &amp; Appoint Board</h4>
+            <p>Texas law requires at least 3 directors. Bylaws must include conflict of interest policy for IRS compliance.</p>
+          </div>
+        </div>
+        <div class="tracker-step">
+          <div class="step-circle pending">5</div>
+          <div class="step-body">
+            <h4>File Form 1023-EZ (IRS)</h4>
+            <p>Federal 501(c)(3) exemption application. Fee: $275. Processing: 1–2 months. Determination Letter issued upon approval.</p>
+          </div>
+        </div>
+        <div class="tracker-step">
+          <div class="step-circle pending">6</div>
+          <div class="step-body">
+            <h4>Texas Sales Tax Exemption (AP-205)</h4>
+            <p>File Form AP-205 with Texas Comptroller. Free to file.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cost-card">
+        <h3>🧾 Total Launch Cost Estimate</h3>
+        <div class="cost-row"><span class="label">Certificate of Formation (TX)</span><span class="amount">$25</span></div>
+        <div class="cost-row"><span class="label">EIN (IRS)</span><span class="amount free">FREE</span></div>
+        <div class="cost-row"><span class="label">Form 1023-EZ (IRS)</span><span class="amount">$275</span></div>
+        <div class="cost-row"><span class="label">AP-205 Sales Tax Exemption</span><span class="amount free">FREE</span></div>
+        <div class="cost-row"><span class="label">Veterans Org Registration (if required)</span><span class="amount">$150</span></div>
+        <div class="cost-total"><span class="total-label">Total Minimum</span><span class="total-amount">$300 – $450</span></div>
+        <br>
+        <p style="font-size:0.82rem; color:#5C3D1E; line-height:1.7;">Once the IRS Determination Letter is received, Clean Slate Houston Foundation will be fully authorized to accept tax-deductible donations and apply for foundation grants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION INTEREST -->
+<section class="donation-section" id="donate">
+  <div class="section-inner">
+    <p class="section-label">Support the Mission</p>
+    <h2 class="section-title">Express Donation Interest</h2>
+    <p class="section-subtitle">501(c)(3) status is in progress. Register your interest now — you will be notified the moment we are authorized to accept tax-deductible contributions.</p>
+    <div class="donation-grid">
+      <div class="donation-why">
+        <h3>Why Your Support Matters</h3>
+        <ul>
+          <li>Every donation directly funds veteran housing access, employment services, and family support in Houston</li>
+          <li>100% of program funds go toward veteran services — not administrative overhead</li>
+          <li>Your contribution supports veterans who have given everything for this country</li>
+          <li>Once approved, all donations are fully tax-deductible under IRS 501(c)(3)</li>
+          <li>Early supporters help us reach funding milestones to launch our first programs</li>
+        </ul>
+      </div>
+      <div class="donation-form">
+        <h3>Register Your Interest</h3>
+        <p class="form-note">⚠️ 501(c)(3) pending — donations are not yet tax-deductible. You will be contacted when we are fully approved.</p>
+        <div class="amount-grid">
+          <div class="amount-btn" onclick="selectAmount(this, '$25')">$25</div>
+          <div class="amount-btn" onclick="selectAmount(this, '$50')">$50</div>
+          <div class="amount-btn" onclick="selectAmount(this, '$100')">$100</div>
+          <div class="amount-btn" onclick="selectAmount(this, '$250')">$250</div>
+          <div class="amount-btn" onclick="selectAmount(this, '$500')">$500</div>
+          <div class="amount-btn" onclick="selectAmount(this, 'Other')">Other</div>
+        </div>
+        <form id="donationForm" action="https://formspree.io/f/myknlnvz" method="POST">
+          <input type="hidden" name="intended_amount" id="amountField" value="">
+          <div class="form-field">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-field">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-field">
+            <label>Designate My Support For</label>
+            <select name="program">
+              <option value="">— Select a program area —</option>
+              <option>Adaptive Housing Services</option>
+              <option>Employment &amp; Workforce Development</option>
+              <option>Homeless Veteran Outreach</option>
+              <option>Veteran Family Support</option>
+              <option>Benefits Navigation &amp; Advocacy</option>
+              <option>Where Needed Most</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Register My Interest →</button>
+          <div class="success-msg" id="successMsg">✓ Thank you! We'll notify you when we're approved to accept donations.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Get In Touch</h2>
+      <p>Have questions about the Foundation, our programs, or how to get involved? We'd love to hear from you.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📧</div>
+        <div class="contact-detail-text">ddmaintenance1988@gmail.com</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div class="contact-detail-text">832-488-5765</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div class="contact-detail-text">Greater Houston Area, Texas</div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <h3>Send a Message</h3>
+      <form id="contactForm" action="https://formspree.io/f/myknlnvz" method="POST">
+        <div class="cf-field">
+          <label>Name</label>
+          <input type="text" name="contact_name" placeholder="Your name" required>
+        </div>
+        <div class="cf-field">
+          <label>Email</label>
+          <input type="email" name="contact_email" placeholder="your@email.com" required>
+        </div>
+        <div class="cf-field">
+          <label>Message</label>
+          <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+        </div>
+        <button type="submit" class="cf-submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Clean Slate Houston Foundation | A nonprofit initiative of SAH Specialty Adaptive Housing &amp; D&amp;D Maintenance, Inc. | <a href="index.html">Return to Main Site</a></p>
+</footer>
+
+<script>
+  function selectAmount(el, val) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('amountField').value = val;
+  }
+
+  // Donation form
+  document.getElementById('donationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    }).then(r => {
+      if (r.ok) {
+        document.getElementById('successMsg').style.display = 'block';
+        this.reset();
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+      }
+    });
+  });
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    }).then(r => { if (r.ok) { this.reset(); alert('Message sent! We\'ll be in touch soon.'); } });
+  });
+</script>
+</body>
+</html>
